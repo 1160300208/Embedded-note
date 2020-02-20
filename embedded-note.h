@@ -75,11 +75,11 @@ int fcntl(int fd, int cmd, struct flock* lock);
  *            返回其中一个锁的flock结构
  */
 struct flock {
-		short l_type; // 锁的类型
-		short l_whence; // 偏移量的起始位置：SEEK_SET, SEEK_CUR, SEEK_END
-		off_t l_start; // 加锁的起始偏移
-		off_t l_len; // 上锁字节
-		pid_t l_pid; // 锁的属主进程ID
+    short l_type; // 锁的类型
+    short l_whence; // 偏移量的起始位置：SEEK_SET, SEEK_CUR, SEEK_END
+    off_t l_start; // 加锁的起始偏移
+    off_t l_len; // 上锁字节
+    pid_t l_pid; // 锁的属主进程ID
 };
 
 /**************************************************
@@ -129,19 +129,19 @@ int stat(const char *path, struct stat *buf);
 int fstat(int fd, struct stat *buf);
 int lstat(const char *path, struct stat *buf); // 返回符号连接的信息
 struct stat {
-		dev_t st_dev; // 文件的设备编号
-		ino_t st_ino; // 文件的inode
-		mode_t st_mode; // 文件的类型和存取的权限
-		nlink_t st_nlink; // 连接到该文件的硬链接数，刚建立的文件值为1
-		uid_t st_uid; // 文件所有者的uid
-		gid_t st_gid; // 文件所有者的gid
-		dev_t st_rdev; // 若此文件为装置设备文件，则为其设备编号
-		off_t st_size; // 文件大小，以字节计算
-		blksize_t st_blksize; // 文件系统的I/O缓冲区大小
-		blkcnt_t st_blocks; // 占用文件区块的个数，区块大小为512字节
-		time_t st_atime; // 文件最近一次被存取或执行的时间
-		time_t st_mtime; // 文件最后一次被修改的时间
-		time_t st_ctime; // inode最近一次被更改的时间
+    dev_t st_dev; // 文件的设备编号
+    ino_t st_ino; // 文件的inode
+    mode_t st_mode; // 文件的类型和存取的权限
+    nlink_t st_nlink; // 连接到该文件的硬链接数，刚建立的文件值为1
+    uid_t st_uid; // 文件所有者的uid
+    gid_t st_gid; // 文件所有者的gid
+    dev_t st_rdev; // 若此文件为装置设备文件，则为其设备编号
+    off_t st_size; // 文件大小，以字节计算
+    blksize_t st_blksize; // 文件系统的I/O缓冲区大小
+    blkcnt_t st_blocks; // 占用文件区块的个数，区块大小为512字节
+    time_t st_atime; // 文件最近一次被存取或执行的时间
+    time_t st_mtime; // 文件最后一次被修改的时间
+    time_t st_ctime; // inode最近一次被更改的时间
 };
 
 /**************************************************
@@ -149,14 +149,14 @@ struct stat {
  **************************************************/
 // 串口设置
 struct termios {
-		unsigned short c_iflag; // 输入模式标志
-		unsigned short c_oflag; // 输出模式标志
-		unsigned short c_cflag; // 控制模式标志
-		unsigned short c_lflag; // 本地模式标志
-		unsigned char c_line; // 线路规程
-		unsigned char c_cc[NCC]; // 控制特性
-		speed_t c_ispeed; // 输入速度
-		speed_t c_ospeed; // 输出速度
+    unsigned short c_iflag; // 输入模式标志
+    unsigned short c_oflag; // 输出模式标志
+    unsigned short c_cflag; // 控制模式标志
+    unsigned short c_lflag; // 本地模式标志
+    unsigned char c_line; // 线路规程
+    unsigned char c_cc[NCC]; // 控制特性
+    speed_t c_ispeed; // 输入速度
+    speed_t c_ospeed; // 输出速度
 };
 /** c_cflag常量名称
  * +-----------+-----------------------------------------------------+
@@ -233,7 +233,7 @@ int tcsetattr(int fd, int optional_actions, const struct termios *termios_p);
 int fd;
 fd = open("/dev/ttyS0", O_RDWR | O_CTTY | O_NDELAY);
 if (fd == -1) {
-		perror("open_port: Unable to open /dev/ttyS0\n");
+    perror("open_port: Unable to open /dev/ttyS0\n");
 }
 
 /* 读写串口 */
@@ -242,9 +242,9 @@ char buffer[] = "Hello Linux";
 int len;
 int nByte;
 len = strlen(buffer);
-nByte =	write(fd, buffer, len);
+nByte =  write(fd, buffer, len);
 if (nByte < len) {
-		perror("write fault\n");
+    perror("write fault\n");
 }
 // 串口读取数据
 char buffer[1000];
@@ -252,7 +252,7 @@ int nByte;
 int len = 900;
 nByte = read(fd, buffer, len);
 if (nByte < 0) {
-		perror("read fault\n");
+    perror("read fault\n");
 }
 
 /**************************************************
@@ -303,14 +303,14 @@ int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
  * addrlen sockaddr结构体的长度
  */
 struct sockaddr {
-		unsigned short sa_family; // 地址家族，AF_xxx
-		char sa_data[14]; // 14字节协议地址
+    unsigned short sa_family; // 地址家族，AF_xxx
+    char sa_data[14]; // 14字节协议地址
 };
 struct sockaddr_in {
-		short int sin_family; // 通信类型
-		unsigned short int sin_port; // 端口
-		struct in_addr sin_addr; // Internet地址
-		unsigned char sin_zero[8]; // 与sockaddr结构长度保持一致
+    short int sin_family; // 通信类型
+    unsigned short int sin_port; // 端口
+    struct in_addr sin_addr; // Internet地址
+    unsigned char sin_zero[8]; // 与sockaddr结构长度保持一致
 };
 
 /* listen() */
